@@ -1,0 +1,21 @@
+- name: run playbook
+  hosts: all
+  tasks:
+  - name: install package
+    apt:
+     name: apache2
+     state: present 
+  - name: create file
+    copy:
+     src: ../website/*
+     dest: /var/www/html/
+  - name: restart service
+    service:
+      name: apache2
+      state: restarted
+      enabled: true
+  - name: create user
+    user:
+     name: sridhar
+     state: present
+    
